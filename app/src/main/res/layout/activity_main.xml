@@ -15,15 +15,20 @@
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
-    <EditText
+    <android.support.design.widget.TextInputLayout
         android:id="@+id/edit_bill_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/text_bill_view"
-        android:hint="Enter Bill Value"
-        android:textColor="#FFFFFF" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/username_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:ems="10"
+            android:hint="Enter bill amount in USD"/>
+
+    </android.support.design.widget.TextInputLayout>
 
     <TextView
         android:id="@+id/text_tip_view"
@@ -46,7 +51,7 @@
             android:id="@+id/tip_minus_button"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
-            android:layout_height="wraÒp_content"
+            android:layout_height="wrap_content"
             android:onClick="decrementTip"
             android:text="-" />
 

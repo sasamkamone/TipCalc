@@ -3,10 +3,10 @@ package com.self.smone.tipcalc;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
@@ -64,10 +64,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displaySummary(View view) {
-        EditText edittext = (EditText) findViewById(R.id.edit_bill_text);
+        final TextInputLayout floatingEdittext = (TextInputLayout) findViewById(R.id.edit_bill_text);
         TextView summaryView = (TextView) findViewById(R.id.summary_text);
-        String bill = edittext.getText().toString();
-        Log.e(TAG, "bill is ***=" + bill + "***");
+        String bill = floatingEdittext.getEditText().getText().toString();
+        Log.i(TAG, "bill is ***=" + bill + "***");
         if (bill.length() > 0 && bill.matches("^\\d*(\\.\\d{2})?$")) {
             BigDecimal tip = calculateTip(Double.parseDouble(bill), tipPercent, people);
             BigDecimal total = totalPerPerson(Double.parseDouble(bill), tip, people);
@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
     private BigDecimal calculateTip(double bill, int tipPercent, int numberOfPeople) {
         BigDecimal b = new BigDecimal((bill * tipPercent) / (100 * numberOfPeople));
