@@ -1,25 +1,52 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.2.3'
+    }
+
+}
+
 apply plugin: 'com.android.application'
+
+repositories {
+    jcenter()
+}
 
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.self.smone.tipcalc"
+        applicationId "com.smone.tipcalc"
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
+
+    signingConfigs{
+        release {
+            storeFile file(releaseKeystore)
+            storePassword releaseStorePassword
+            keyAlias releaseKeyAlias
+            keyPassword releaseStorePassword
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
         debug {
+            minifyEnabled false
 
         }
     }
+    
 }
 
 dependencies {
@@ -28,4 +55,6 @@ dependencies {
     compile 'com.android.support:design:22.2.0'
 
     testCompile 'org.robolectric:robolectric:3.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.0'
+    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
 }
